@@ -110,8 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Container(
                 child: Container(
                     alignment: Alignment.bottomCenter,
-                    padding:
-                        EdgeInsets.only(left: (width / 3), right: (width / 3)),
+                    padding: EdgeInsets.only(left: (width / 2.75)),
                     child: Row(
                       children: [
                         Padding(
