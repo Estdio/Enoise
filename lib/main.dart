@@ -54,14 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
       var r = await Requests.get(requrl);
       r.raiseForStatus();
       _httpcontent = "[200] " + requrl;
-      debugPrint(_httpcontent);
     } catch (TimeoutException) {
       _httpcontent = "[408] TimeoutException: " + requrl;
     }
   }
 
   void requesttoggle() {
-    debugPrint('here');
     if (_booltoggle) {
       _booltoggle = false;
     } else {
@@ -75,17 +73,19 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         makerequest();
       });
-      //sleep(Duration(seconds: 1));
-      debugPrint('before:delay');
       await Future.delayed(Duration(seconds: 1));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.red,
+          scaffoldBackgroundColor: Color.fromRGBO(25, 25, 25, 1),
         ),
         home: Scaffold(
             appBar: AppBar(title: Text('Enoise')),
@@ -97,30 +97,38 @@ class _MyHomePageState extends State<MyHomePage> {
                         image: AssetImage("assets/E.png"),
                         fit: BoxFit.scaleDown)),
                 child: Center(
-                  child: Text(
-                    _httpcontent,
-                    style: Theme.of(context).textTheme.bodyText1,
+                  child: Container(
+                    color: Color.fromRGBO(255, 255, 255, 0.8),
+                    child: Text(
+                      _httpcontent,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                 ),
               ),
             ),
-            floatingActionButton: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: updatescreen,
-                    child: Icon(Icons.network_cell),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: requesttoggle,
-                    child: Icon(Icons.stop_circle_outlined),
-                  ),
-                ),
-              ],
-            )));
+            floatingActionButton: Container(
+                child: Container(
+                    alignment: Alignment.bottomCenter,
+                    padding:
+                        EdgeInsets.only(left: (width / 3), right: (width / 3)),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: ElevatedButton(
+                            onPressed: updatescreen,
+                            child: Icon(Icons.network_cell),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: ElevatedButton(
+                            onPressed: requesttoggle,
+                            child: Icon(Icons.stop_circle_outlined),
+                          ),
+                        ),
+                      ],
+                    )))));
   }
 }
