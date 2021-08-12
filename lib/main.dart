@@ -83,51 +83,54 @@ class _MyHomePageState extends State<MyHomePage> {
     double height = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-          scaffoldBackgroundColor: Color.fromRGBO(25, 25, 25, 1),
-        ),
-        home: Scaffold(
-            appBar: AppBar(title: Text('Enoise')),
-            body: Center(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        scaffoldBackgroundColor: Color.fromRGBO(25, 25, 25, 1),
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: Text('Enoise')),
+        body: Center(
+          child: Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/E.png"), fit: BoxFit.scaleDown)),
+            child: Center(
               child: Container(
-                constraints: BoxConstraints.expand(),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/E.png"),
-                        fit: BoxFit.scaleDown)),
-                child: Center(
-                  child: Container(
-                    color: Color.fromRGBO(255, 255, 255, 0.8),
-                    child: Text(
-                      _httpcontent,
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                  ),
+                color: Color.fromRGBO(255, 255, 255, 0.8),
+                child: Text(
+                  _httpcontent,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
             ),
-            floatingActionButton: Container(
-                child: Container(
-                    alignment: Alignment.bottomCenter,
-                    padding: EdgeInsets.only(left: (width / 2.75)),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: ElevatedButton(
-                            onPressed: updatescreen,
-                            child: Icon(Icons.network_cell),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: ElevatedButton(
-                            onPressed: requesttoggle,
-                            child: Icon(Icons.stop_circle_outlined),
-                          ),
-                        ),
-                      ],
-                    )))));
+          ),
+        ),
+        floatingActionButton: Container(
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.only(left: (width / 2) - 55),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: ElevatedButton(
+                    onPressed: updatescreen,
+                    child: Icon(Icons.network_cell),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: ElevatedButton(
+                    onPressed: requesttoggle,
+                    child: Icon(Icons.stop_circle_outlined),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
